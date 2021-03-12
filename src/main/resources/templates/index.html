@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GBP Rates</title>
+</head>
+<body>
+
+<div align="left">
+    <h1 th:text="'Current GBP rate: ' + ${gbpValue} + ' GBP'"></h1>
+
+    <form th:action="@{/calculateValue}" method="post">
+<!--        th:object="${newClient}"-->
+        <p>You send: <input type="text"/></p><br>
+<!--        th:field="*{valueToCalculate}"-->
+        <p><input type="submit" value="Calculate" ></p><br>
+        <p>They recieve: <input type="text"/></p>
+<!--        th:field="*{valueToRaturn}"-->
+
+    </form>
+
+</div>
+
+
+
+</body>
+</html>

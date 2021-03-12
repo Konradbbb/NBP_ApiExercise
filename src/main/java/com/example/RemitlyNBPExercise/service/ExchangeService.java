@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.MissingResourceException;
+import java.util.Scanner;
 
 @Service
 @Slf4j
@@ -14,22 +17,15 @@ public class ExchangeService {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    public ExchangeDto getExchange() {
-
+    public double getExchange() {
         NBPDto nbpDto = getExchangeForCurrency("gbp");
-
-        return ExchangeDto.builder()
-                .mid(nbpDto.rates[0].mid)
-                .build();
-
-    }
-
-    public double caculate() {
-        double value = getExchange().getMid();
-        return value;
+        double gbpValue = nbpDto.rates[0].mid;
+        return gbpValue;
     }
 
     private NBPDto getExchangeForCurrency(String currency) {
-        return restTemplate.getForObject("http://api.nbp.pl/api/exchangerates/rates/a/{currency}/?format=json", NBPDto.class, currency);
+        return restTemplate.getForObject("http://api.nbp.pl/api/exchangerates/rates/a/{currency}/?format=json",
+                NBPDto.class,
+                currency);
     }
 }
