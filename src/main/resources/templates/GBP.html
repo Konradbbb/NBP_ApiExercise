@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GBP Rates</title>
+
+</head>
+<body>
+
+<!--Using Thymeleaf I tried to pass and get values through the app-->
+
+<div class="mainDiv" align="center">
+
+    <h2 th:text="'Current GBP rate: ' + ${gbpValue} + ' GBP'"></h2>
+
+    <form th:action="@{/GBP}"  th:object="${newClient}" method="post">
+
+        <p>You send: <input type="text" th:field="*{valueToCalculate}"/></p><br>
+        <p><input type="submit" value="Calculate" ></p><br>
+        <p th:text="'They recieve: ' + *{calculateValue()}"></p>
+
+    </form>
+
+</div>
+
+
+
+</body>
+</html>
